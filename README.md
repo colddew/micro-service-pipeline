@@ -32,6 +32,8 @@ try to build the latest microservice CI/CD architecture with popular technologie
   
 - add k8s dashboard
 
+  kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+
   kubectl proxy
   
   TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
