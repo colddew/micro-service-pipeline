@@ -6,11 +6,12 @@ try to build the latest microservice CI/CD architecture with popular technologie
 - Docker
 - Kubernetes
 - Istio
-- Zipkin
+- Zipkin / Jaeger
 - Grafana
 - Jenkins
 - Gitlab
 - Nexus
+- Granafa
 
 # tips
 
