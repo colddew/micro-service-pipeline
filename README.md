@@ -1,16 +1,27 @@
 # brief
+
 build the latest microservice CI/CD architecture with popular technologies
 
 # tech stack
+
 - [ ] SpringBoot
+
 - [ ] Docker
-- [ ] Kubernetes
+
+- [x] Kubernetes
+
 - [ ] Istio
+
 - [ ] Zipkin / Jaeger
+
 - [ ] Grafana
+
 - [ ] Jenkins
+
 - [ ] Gitlab
+
 - [ ] Nexus
+
 - [ ] Granafa
 
 # details
@@ -42,6 +53,3 @@ build the latest microservice CI/CD architecture with popular technologies
   kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
   
   visit http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/, click `shift + command + .`, select config file and login
-  
-  
-  
