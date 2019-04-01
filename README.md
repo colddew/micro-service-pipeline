@@ -1,19 +1,19 @@
-# desc
-try to build the latest microservice CI/CD architecture with popular technologies
+# brief
+build the latest microservice CI/CD architecture with popular technologies
 
 # tech stack
-- SpringBoot
-- Docker
-- Kubernetes
-- Istio
-- Zipkin / Jaeger
-- Grafana
-- Jenkins
-- Gitlab
-- Nexus
-- Granafa
+- [ ] SpringBoot
+- [ ] Docker
+- [ ] Kubernetes
+- [ ] Istio
+- [ ] Zipkin / Jaeger
+- [ ] Grafana
+- [ ] Jenkins
+- [ ] Gitlab
+- [ ] Nexus
+- [ ] Granafa
 
-# tips
+# details
 
 ## add k8s support for mac docker
 
