@@ -96,10 +96,10 @@ build the latest microservice CI/CD architecture with popular technologies
   
 - relevant endpoint
 
-  prometheus  `http://localhost:9090/graph`
+  prometheus - `http://localhost:9090/graph`
   
-  grafana     `http://localhost:3000/dashboard`
+  grafana - `http://localhost:3000/dashboard`
   
-  zipkin      `http://localhost:9411`
+  zipkin - `http://localhost:9411`
   
-  jaeger      `http://localhost:16686`
+  jaeger - `http://localhost:16686`
