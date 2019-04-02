@@ -6,15 +6,17 @@ build the latest microservice CI/CD architecture with popular technologies
 
 - [ ] SpringBoot
 
-- [ ] Docker
+- [x] Docker
 
 - [x] Kubernetes
 
-- [ ] Istio
+- [x] Istio
 
-- [ ] Zipkin / Jaeger
+- [x] Zipkin / Jaeger
 
-- [ ] Grafana
+- [x] Grafana
+
+- [x] Granafa
 
 - [ ] Jenkins
 
@@ -22,9 +24,13 @@ build the latest microservice CI/CD architecture with popular technologies
 
 - [ ] Nexus
 
-- [ ] Granafa
-
 # details
+
+## install macosx docker desktop
+
+- pay attention to the default versions of docker and k8s should be compatible
+
+- adjust docker memory for k8s or istio if necessary
 
 ## add k8s support for mac docker
 
@@ -32,9 +38,9 @@ build the latest microservice CI/CD architecture with popular technologies
 
   rm -rf ~/.kube
 
-  ./docker-k8s-images.sh
+  ./script/docker-k8s-images.sh
 
-- check k8s installation
+- check k8s installation status
 
   kubectl version
   
@@ -53,3 +59,37 @@ build the latest microservice CI/CD architecture with popular technologies
   kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
   
   visit http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/, click `shift + command + .`, select config file and login
+
+## install istio by helm
+
+- init istio
+
+  brew install kubernetes-helm
+	
+  helm init --history-max 200
+
+  kubectl create namespace istio-system
+  
+  helm template install/kubernetes/helm/istio-init --name istio-init --namespace istio-system | kubectl apply -f -
+  
+  kubectl get crds | grep 'istio.io\|certmanager.k8s.io' | wc -l
+  
+  kubectl get svc -n istio-system
+  
+  kubectl get pods -n istio-system
+  
+- collect metrics and logs
+
+  istioctl create -f telemetry.yaml
+  
+  kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=prometheus -o jsonpath='{.items[0].metadata.name}') 9090:9090 &
+  
+- add granafa and zipkin support, if you want to use jaeger and you need to delete `--set tracing.provider=zipkin` setting
+
+  helm template install/kubernetes/helm/istio --name istio --namespace istio-system --set tracing.enabled=true --set tracing.ingress.enabled=true --set grafana.enabled=true --set tracing.provider=zipkin | kubectl apply -f -
+  
+  kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=grafana -o jsonpath='{.items[0].metadata.name}') 3000:3000 &
+  
+  kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=zipkin -o jsonpath='{.items[0].metadata.name}') 9411:9411 &
+  
+  kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=jaeger -o jsonpath='{.items[0].metadata.name}') 16686:16686 &
