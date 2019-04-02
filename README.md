@@ -30,7 +30,7 @@ build the latest microservice CI/CD architecture with popular technologies
 
 - pay attention to the default versions of docker and k8s should be compatible
 
-- adjust docker memory for k8s or istio if necessary
+- adjust docker memory for k8s or istio if necessary, no less than 6GB
 
 ## add k8s support for mac docker
 
@@ -93,3 +93,13 @@ build the latest microservice CI/CD architecture with popular technologies
   kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=zipkin -o jsonpath='{.items[0].metadata.name}') 9411:9411 &
   
   kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=jaeger -o jsonpath='{.items[0].metadata.name}') 16686:16686 &
+  
+- relevant endpoint
+
+  prometheus  `http://localhost:9090/graph`
+  
+  grafana     `http://localhost:3000/dashboard`
+  
+  zipkin      `http://localhost:9411`
+  
+  jaeger      `http://localhost:16686`
