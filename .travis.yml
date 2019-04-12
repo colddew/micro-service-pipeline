@@ -3,7 +3,10 @@ language: java
 jdk: oraclejdk8
 
 before_install:
-  - apt-cache search gradle
-  - sudo apt-get install gradle-5.3.1
+  - sudo add-apt-repository ppa:cwchien/gradle
+  - sudo apt-get update
+  - sudo apt upgrade gradle
+#  - apt-cache search gradle
+#  - sudo apt-get install gradle-5.3.1
 
 script: cd micro-service-gradle && gradle clean test
