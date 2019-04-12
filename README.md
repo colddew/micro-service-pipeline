@@ -4,7 +4,7 @@ build the latest microservice CI/CD architecture with popular technologies
 
 # tech stack
 
-- [ ] SpringBoot
+- [x] SpringBoot
 
 - [x] Docker
 
@@ -12,13 +12,13 @@ build the latest microservice CI/CD architecture with popular technologies
 
 - [x] Istio
 
-- [x] Zipkin / Jaeger
+- [x] Jaeger / Zipkin
 
 - [x] Grafana
 
 - [x] Granafa
 
-- [ ] Jenkins
+- [ ] Travis CI / Jenkins
 
 - [ ] Gitlab
 
