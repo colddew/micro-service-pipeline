@@ -4,4 +4,4 @@ jdk: oraclejdk8
 
 before_install: sudo apt-get install gradle-5.3.1
 
-script: cd micro-service-gradle && gradlew clean test
+script: cd micro-service-gradle && gradle clean test
