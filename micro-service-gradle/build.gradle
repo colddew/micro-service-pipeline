@@ -62,19 +62,6 @@ subprojects {
     }
 }
 
-//jacoco {
-//    reportsDir = file("buildDir/reports/jacoco")
-//}
-//
-//jacocoTestReport {
-//    reports {
-//        xml.enabled true
-//        html.enabled true
-//        csv.enabled false
-//        html.destination file("${buildDir}/reports/jacoco")
-//    }
-//}
-
 task codeCoverageReport(type: JacocoReport) {
     executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
 
@@ -83,9 +70,10 @@ task codeCoverageReport(type: JacocoReport) {
     }
 
     reports {
-        xml.enabled false
-        html.enabled true
-        html.destination file("${buildDir}/reports/jacoco")
+        xml.enabled true
+        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+        html.enabled false
+//        html.destination file("${buildDir}/reports/jacoco")
         csv.enabled false
     }
 }
