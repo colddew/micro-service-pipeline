@@ -13,7 +13,9 @@ before_install:
     - gradle -v
 
 script:
-    - cd micro-service-gradle && gradle clean test jacocoTestReport
+    - cd micro-service-gradle
+    - gradle clean test
+    - gradle codeCoverageReport
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
