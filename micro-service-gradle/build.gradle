@@ -62,15 +62,34 @@ subprojects {
     }
 }
 
-jacoco {
-    reportsDir = file("buildDir/reports/jacoco")
+//jacoco {
+//    reportsDir = file("buildDir/reports/jacoco")
+//}
+//
+//jacocoTestReport {
+//    reports {
+//        xml.enabled true
+//        html.enabled true
+//        csv.enabled false
+//        html.destination file("${buildDir}/reports/jacoco")
+//    }
+//}
+
+task codeCoverageReport(type: JacocoReport) {
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    subprojects.each {
+        sourceSets it.sourceSets.main
+    }
+
+    reports {
+        xml.enabled false
+        html.enabled true
+        html.destination file("${buildDir}/reports/jacoco/test/html")
+        csv.enabled false
+    }
 }
 
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled true
-        csv.enabled false
-        html.destination file("${buildDir}/reports/jacoco")
-    }
+codeCoverageReport.dependsOn {
+    subprojects*.test
 }
