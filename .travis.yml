@@ -3,7 +3,8 @@ language: java
 jdk: oraclejdk8
 
 before_install:
-  - sudo apt-get install gradle-5.1
+  - sudo apt-cache madison gradle
+  - sudo apt-get install gradle
 #  - apt-cache search gradle
 #  - sudo apt-get install gradle-5.3.1
 
