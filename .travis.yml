@@ -5,7 +5,6 @@ jdk: oraclejdk8
 before_install:
     - wget https://services.gradle.org/distributions/gradle-5.1-bin.zip -P /tmp
     - sudo unzip -d /opt/gradle /tmp/gradle-5.1-bin.zip
-    - sudo mkdir /opt/gradle
     - export PATH=$PATH:/opt/gradle/gradle-5.1/bin
     - gradle -v
 
