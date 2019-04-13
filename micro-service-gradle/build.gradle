@@ -60,26 +60,17 @@ subprojects {
     jar {
         manifest.attributes provider: 'gradle'
     }
-
-    // test.useTestNG()
 }
 
-task codeCoverageReport(type: JacocoReport) {
+jacoco {
+    reportsDir = file("buildDir/reports/jacoco")
+}
 
-    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
-
-    subprojects.each {
-        sourceSets it.sourceSets.main
-    }
-
+jacocoTestReport {
     reports {
         xml.enabled true
         html.enabled true
-        html.destination "${buildDir}/reports/jacoco"
         csv.enabled false
+        html.destination file("${buildDir}/reports/jacoco")
     }
-}
-
-codeCoverageReport.dependsOn {
-    subprojects*.test
 }
