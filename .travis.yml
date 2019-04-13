@@ -5,7 +5,11 @@ jdk: oraclejdk8
 before_install:
     - wget https://services.gradle.org/distributions/gradle-5.1-bin.zip -P /tmp
     - sudo unzip -d /opt/gradle /tmp/gradle-5.1-bin.zip
-    - export PATH=$PATH:/opt/gradle/gradle-5.1/bin
+    - sudo touch /etc/profile.d/gradle.sh
+    - export GRADLE_HOME=/opt/gradle/gradle-5.1
+    - export PATH=${GRADLE_HOME}/bin:${PATH}
+    - sudo chmod +x /etc/profile.d/gradle.sh
+    - source /etc/profile.d/gradle.sh
     - gradle -v
 
 script: cd micro-service-gradle && gradle clean test
