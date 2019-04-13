@@ -12,4 +12,9 @@ before_install:
     - source /etc/profile.d/gradle.sh
     - gradle -v
 
-script: cd micro-service-gradle && gradle clean test
+script:
+    - cd micro-service-gradle && gradle clean test
+    - gradle codeCoverageReport
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash)

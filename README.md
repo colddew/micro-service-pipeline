@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/colddew/micro-service-lab.svg?branch=master)](https://travis-ci.org/colddew/micro-service-lab)
-[![Coverage Status](https://img.shields.io/codecov/c/github/auth0/java-jwt/v3.svg?style=flat-square)](https://codecov.io/github/auth0/java-jwt)
+[![codecov](https://codecov.io/gh/colddew/micro-service-lab/branch/master/graph/badge.svg)](https://codecov.io/gh/colddew/micro-service-lab)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat)](http://doge.mit-license.org)
 
 # brief
@@ -22,7 +22,7 @@ build the latest microservice CI/CD architecture with popular technologies
 
 - [x] Granafa
 
-- [ ] Travis CI / Jenkins
+- [x] Travis CI / Jenkins
 
 - [ ] Gitlab
 
