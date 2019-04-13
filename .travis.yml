@@ -3,9 +3,10 @@ language: java
 jdk: oraclejdk8
 
 before_install:
-  - sudo apt-cache madison gradle
-  - sudo apt-get install gradle
-#  - apt-cache search gradle
-#  - sudo apt-get install gradle-5.3.1
+    - wget https://services.gradle.org/distributions/gradle-5.1-bin.zip -P /tmp
+    - sudo unzip -d /opt/gradle /tmp/gradle-5.1.zip
+    - sudo mkdir /opt/gradle
+    - export PATH=$PATH:/opt/gradle/gradle-5.1/bin
+    - gradle -v
 
 script: cd micro-service-gradle && gradle clean test
