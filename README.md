@@ -108,6 +108,8 @@ build the latest microservice CI/CD architecture with popular technologies
   
 ## build and deploy microservice
   
+- build microservice docker images
+
   cd micro-service-gradle
     
   gradle micro-service-a:build -x test
@@ -121,7 +123,9 @@ build the latest microservice CI/CD architecture with popular technologies
   docker push colddew/micro-service-a:1.0-SNAPSHOT
     
   ~~docker run -p 9001:9001 -t cn.plantlink/micro-service-a~~
-  
+
+- deploy microservice docker images
+
   kubectl run micro-service-a --replicas=2 --labels="app=micro-service" --image cn.plantlink/micro-service-a:1.0-SNAPSHOT --port 9001
   
   kubectl expose deployment --port=9001 micro-service-a --type=LoadBalancer --name=micro-service-a
