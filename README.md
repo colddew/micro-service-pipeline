@@ -18,8 +18,6 @@ build the latest microservice CI/CD architecture with popular technologies
 
 - [x] Jaeger / Zipkin
 
-- [x] Grafana
-
 - [x] Granafa
 
 - [x] Travis CI / Jenkins
