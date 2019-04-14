@@ -106,7 +106,7 @@ build the latest microservice CI/CD architecture with popular technologies
   
   jaeger - `http://localhost:16686`
   
-## build microservice docker image, push image to dockerhub, start microservice
+## build and deploy microservice
   
   cd micro-service-gradle
     
@@ -115,7 +115,19 @@ build the latest microservice CI/CD architecture with popular technologies
   gradle micro-service-a:docker
     
   docker login
+  
+  docker tag cn.plantlink/micro-service-a:1.0-SNAPSHOT colddew/micro-service-a:1.0-SNAPSHOT
     
   docker push colddew/micro-service-a:1.0-SNAPSHOT
     
-  docker run -p 8001:8001 -t cn.plantlink/micro-service-a
+  ~~docker run -p 9001:9001 -t cn.plantlink/micro-service-a~~
+  
+  kubectl run micro-service-a --replicas=2 --labels="app=micro-service" --image cn.plantlink/micro-service-a:1.0-SNAPSHOT --port 9001
+  
+  kubectl expose deployment --port=9001 micro-service-a --type=LoadBalancer --name=micro-service-a
+  
+  kubectl scale deployment micro-service-a --replicas=3
+  
+  kubectl get service micro-service-a -o=wide
+  
+  kubectl get pods --selector="app=micro-service" -o=wide
