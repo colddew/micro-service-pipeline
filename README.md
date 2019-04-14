@@ -105,3 +105,17 @@ build the latest microservice CI/CD architecture with popular technologies
   zipkin - `http://localhost:9411`
   
   jaeger - `http://localhost:16686`
+  
+## build microservice docker image, push image to dockerhub, start microservice
+  
+  cd micro-service-gradle
+    
+  gradle micro-service-a:build -x test
+    
+  gradle micro-service-a:docker
+    
+  docker login
+    
+  docker push colddew/micro-service-a:1.0-SNAPSHOT
+    
+  docker run -p 8001:8001 -t cn.plantlink/micro-service-a
