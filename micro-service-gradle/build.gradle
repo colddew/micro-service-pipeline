@@ -9,11 +9,15 @@ buildscript {
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         jcenter()
         mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
         classpath "io.spring.gradle:dependency-management-plugin:${dependencyManagementVersion}"
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.22.0"
     }
 }
 
@@ -44,6 +48,7 @@ subprojects {
 
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'com.palantir.docker'
 
     dependencies {
         compile('org.springframework.boot:spring-boot-starter-actuator')
@@ -59,6 +64,18 @@ subprojects {
 
     jar {
         manifest.attributes provider: 'gradle'
+    }
+
+    task unpack(type: Copy) {
+        dependsOn bootJar
+        from(zipTree(tasks.bootJar.outputs.files.singleFile))
+        into("build/dependency")
+    }
+
+    docker {
+        name "${project.group}/${bootJar.baseName}"
+        copySpec.from(tasks.unpack.outputs).into("dependency")
+        buildArgs(['DEPENDENCY': "dependency"])
     }
 }
 
