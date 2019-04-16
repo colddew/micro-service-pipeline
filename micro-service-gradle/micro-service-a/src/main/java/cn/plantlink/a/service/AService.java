@@ -1,19 +1,16 @@
 package cn.plantlink.a.service;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import cn.plantlink.a.config.MicroserviceAProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@EnableConfigurationProperties(ServiceProperties.class)
 public class AService {
 
-    private final ServiceProperties serviceProperties;
+    @Autowired
+    private MicroserviceAProperties aProperties;
 
-    public AService(ServiceProperties serviceProperties) {
-        this.serviceProperties = serviceProperties;
-    }
-
-    public String message() {
-        return this.serviceProperties.getMessage();
+    public String getMessage() {
+        return aProperties.getMessage();
     }
 }

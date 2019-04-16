@@ -112,10 +112,12 @@ build the latest microservice CI/CD architecture with popular technologies
 
   cd micro-service-gradle
     
-  gradle micro-service-a:build -x test
-    
-  gradle micro-service-a:docker
-    
+  ~~gradle micro-service-a:build -x test~~
+  
+  gradle clean test codeCoverageReport
+  
+  gradle build docker
+  
   docker login
   
   docker tag cn.plantlink/micro-service-a:1.0-SNAPSHOT colddew/micro-service-a:1.0-SNAPSHOT

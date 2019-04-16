@@ -2,3 +2,6 @@ rootProject.name = 'micro-service-gradle'
 
 include 'micro-service-a'
 include 'micro-service-b'
+include 'micro-service-c'
+include 'micro-service-d'
+

@@ -1,0 +1,4 @@
+archivesBaseName = "micro-service-c"
+
+dependencies {
+}

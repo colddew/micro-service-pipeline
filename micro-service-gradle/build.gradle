@@ -3,6 +3,8 @@ buildscript {
     ext {
         springBootVersion = "2.1.4.RELEASE"
         dependencyManagementVersion = "1.0.7.RELEASE"
+        gradleDockerVersion = "0.22.0"
+        retrofitVersion = "2.5.0"
     }
 
     repositories {
@@ -17,14 +19,14 @@ buildscript {
     dependencies {
         classpath "io.spring.gradle:dependency-management-plugin:${dependencyManagementVersion}"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-        classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.22.0"
+        classpath "gradle.plugin.com.palantir.gradle.docker:gradle-docker:${gradleDockerVersion}"
     }
 }
 
 allprojects {
 
     group 'cn.plantlink'
-    version '1.0-SNAPSHOT'
+    version '1.0.1-SNAPSHOT'
 
     apply plugin: 'java'
     apply plugin: 'idea'
@@ -51,9 +53,13 @@ subprojects {
     apply plugin: 'com.palantir.docker'
 
     dependencies {
-        compile('org.springframework.boot:spring-boot-starter-actuator')
-        compile('org.springframework.boot:spring-boot-starter-web')
-        testCompile('org.springframework.boot:spring-boot-starter-test')
+        compile 'org.springframework.boot:spring-boot-starter-actuator'
+        compile 'org.springframework.boot:spring-boot-starter-web'
+        compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+        compile "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
+        compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+        compile 'com.google.code.findbugs:jsr305:2.0.1'
+        testCompile 'org.springframework.boot:spring-boot-starter-test'
     }
 
     dependencyManagement {
@@ -65,7 +71,7 @@ subprojects {
     jar {
         manifest.attributes provider: 'gradle'
     }
-    
+
     docker {
         name "${project.group}/${jar.baseName}:${jar.version}"
         files jar.archivePath
