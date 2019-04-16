@@ -1,5 +1,8 @@
 package cn.plantlink.a;
 
+import org.apache.juli.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +14,8 @@ import java.util.Arrays;
 @SpringBootApplication
 public class AApplication {
 
+    private static final Logger logger = LoggerFactory.getLogger(AApplication.class);
+
     public static void main(String[] args) {
         SpringApplication.run(AApplication.class, args);
     }
@@ -19,13 +24,13 @@ public class AApplication {
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 
-            System.out.println("inspect the beans provided by Spring Boot:");
+            logger.info("inspect the beans provided by Spring Boot:");
 
             String[] beanNames = ctx.getBeanDefinitionNames();
             Arrays.sort(beanNames);
 
             for (String beanName : beanNames) {
-                System.out.println(beanName);
+                logger.info(beanName);
             }
         };
     }

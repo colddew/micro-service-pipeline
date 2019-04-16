@@ -1,7 +1,10 @@
 package cn.plantlink.a.controller;
 
+import cn.plantlink.a.AApplication;
 import cn.plantlink.a.service.AService;
 import cn.plantlink.a.service.remote.RemoteMicroservice;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/a")
 public class AController {
+
+    private static final Logger logger = LoggerFactory.getLogger(AController.class);
 
     @Autowired
     private AService aService;
@@ -18,16 +23,25 @@ public class AController {
 
     @RequestMapping({"", "/"})
     public String index() {
-        return "hello world a";
+        String hello = "hello world a";
+        logger.info(hello);
+        return hello;
     }
 
     @RequestMapping("/message")
     public String getMessage() {
-        return aService.getMessage();
+        String message = aService.getMessage();
+        logger.info(message);
+        return message;
+
     }
 
     @RequestMapping("/rest")
     public String rest() throws Exception {
-        return String.format("[a = %s, b = %s , c = %s", "a-rest]", remoteMicroservice.bClientRest(), remoteMicroservice.cClientRest());
+        String bClientRest = remoteMicroservice.bClientRest();
+        String cClientRest = remoteMicroservice.cClientRest();
+        String format = String.format("[a = %s, b = %s , c = %s", "a-rest]", bClientRest, cClientRest);
+        logger.info(format);
+        return format;
     }
 }
