@@ -1,0 +1,40 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  namespace: micro-service
+  name: micro-service-gateway
+spec:
+  selector:
+    istio: ingressgateway # istio default gateway implementation
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "anmydeMacBook-Pro.local"
+#        - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  namespace: micro-service
+  name: micro-service-vs
+spec:
+  hosts:
+    - "anmydeMacBook-Pro.local"
+#    - "*"
+  gateways:
+    - micro-service-gateway
+    - mesh
+  http:
+    - match:
+        - uri:
+            prefix: /micro-service
+      route:
+        - destination:
+            host: micro-service-a
+            port:
+              number: 9999
+      rewrite:
+        uri: /
