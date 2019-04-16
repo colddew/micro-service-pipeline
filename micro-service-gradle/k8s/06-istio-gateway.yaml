@@ -22,7 +22,7 @@ metadata:
   name: micro-service-vs
 spec:
   hosts:
-    - "*" 
+    - "*"
 #    - "<hostname>" # need access by curl
   gateways:
     - micro-service-gateway
