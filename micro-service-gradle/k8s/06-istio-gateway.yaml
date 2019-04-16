@@ -12,8 +12,8 @@ spec:
         name: http
         protocol: HTTP
       hosts:
-        - "anmydeMacBook-Pro.local"
-#        - "*"
+        - "*"
+#        - "<hostname>"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -22,8 +22,8 @@ metadata:
   name: micro-service-vs
 spec:
   hosts:
-    - "anmydeMacBook-Pro.local"
-#    - "*"
+    - "*"
+#    - "<hostname>" # need access by curl
   gateways:
     - micro-service-gateway
     - mesh

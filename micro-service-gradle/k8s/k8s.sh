@@ -5,9 +5,9 @@ kubectl apply -f .
 # kubectl delete -f .
 
 # access gateway
-watch -n 1 -d curl -HHost:anmydeMacBook-Pro.local http://localhost:80/micro-service/api/v1/a
-watch -n 1 -d curl -HHost:anmydeMacBook-Pro.local http://localhost:80/micro-service/api/v1/a/message
-watch -n 1 -d curl -HHost:anmydeMacBook-Pro.local http://localhost:80/micro-service/api/v1/a/rest
+watch -n 1 -d curl -HHost:<hostname> http://localhost:80/micro-service/api/v1/a
+watch -n 1 -d curl -HHost:<hostname> http://localhost:80/micro-service/api/v1/a/message
+watch -n 1 -d curl -HHost:<hostname> http://localhost:80/micro-service/api/v1/a/rest
 
 # sacle and upgrade micro-service
 kubectl scale -n micro-service --replicas=3 deployment/micro-service-a
