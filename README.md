@@ -16,7 +16,7 @@ build the latest microservice CI/CD architecture with popular technologies
 
 - [x] Istio
 
-- [x] Jaeger / Zipkin: spans quantity
+- [x] Jaeger / Zipkin
 
 - [x] Granafa: config metircs name
 
@@ -139,3 +139,5 @@ build the latest microservice CI/CD architecture with popular technologies
   kubectl get service micro-service-a -o=wide
   
   kubectl get pods --selector="app=micro-service" -o=wide
+
+## result screenshot
