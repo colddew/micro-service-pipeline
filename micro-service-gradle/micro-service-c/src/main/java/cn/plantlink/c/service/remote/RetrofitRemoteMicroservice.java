@@ -1,16 +1,17 @@
-package cn.plantlink.c.remote;
+package cn.plantlink.c.service.remote;
 
 import cn.plantlink.c.config.MicroserviceCProperties;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import javax.annotation.PostConstruct;
 
-@Service
-public class RemoteMicroservice {
+/**
+ * TODO opentracing jaeger sapns issue, just 2 spans
+ */
+public class RetrofitRemoteMicroservice {
 
     @Autowired
     private MicroserviceCProperties cProperties;

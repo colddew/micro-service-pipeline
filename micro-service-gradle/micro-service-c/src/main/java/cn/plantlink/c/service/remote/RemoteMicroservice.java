@@ -1,6 +1,6 @@
-package cn.plantlink.b.service.remote;
+package cn.plantlink.c.service.remote;
 
-import cn.plantlink.b.config.MicroserviceBProperties;
+import cn.plantlink.c.config.MicroserviceCProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -9,12 +9,12 @@ import org.springframework.web.client.RestTemplate;
 public class RemoteMicroservice {
 
     @Autowired
-    private MicroserviceBProperties bProperties;
+    private MicroserviceCProperties cProperties;
 
     @Autowired
     private RestTemplate restTemplate;
 
     public String dClientRest() {
-        return restTemplate.getForObject(bProperties.getDBaseUrl() + "/api/v1/d/rest", String.class);
+        return restTemplate.getForObject(cProperties.getDBaseUrl() + "/api/v1/d/rest", String.class);
     }
 }

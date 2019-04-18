@@ -1,4 +1,4 @@
-package cn.plantlink.c.remote;
+package cn.plantlink.c.service.remote;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

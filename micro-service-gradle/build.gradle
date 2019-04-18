@@ -5,6 +5,8 @@ buildscript {
         dependencyManagementVersion = "1.0.7.RELEASE"
         gradleDockerVersion = "0.22.0"
         retrofitVersion = "2.5.0"
+        findbugsVersion = "jsr305:2.0.1"
+        springJaegerVersion = "1.0.3"
     }
 
     repositories {
@@ -26,7 +28,7 @@ buildscript {
 allprojects {
 
     group 'cn.plantlink'
-    version '1.0.2-SNAPSHOT'
+    version '1.0.3-SNAPSHOT'
 
     apply plugin: 'java'
     apply plugin: 'idea'
@@ -58,7 +60,8 @@ subprojects {
         compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
         compile "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
         compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
-        compile 'com.google.code.findbugs:jsr305:2.0.1'
+        compile "com.google.code.findbugs:${findbugsVersion}"
+        compile "io.opentracing.contrib:opentracing-spring-jaeger-web-starter:${springJaegerVersion}"
         testCompile 'org.springframework.boot:spring-boot-starter-test'
     }
 

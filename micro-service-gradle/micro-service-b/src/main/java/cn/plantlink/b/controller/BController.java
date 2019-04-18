@@ -24,7 +24,7 @@ public class BController {
     }
 
     @RequestMapping("/rest")
-    public String rest() throws Exception {
+    public String rest() {
         String dClientRest = remoteMicroservice.dClientRest();
         logger.info(dClientRest);
         return String.format("[b = %s, d = %s]", "b-rest", dClientRest);

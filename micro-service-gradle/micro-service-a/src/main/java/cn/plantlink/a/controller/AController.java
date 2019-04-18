@@ -1,6 +1,5 @@
 package cn.plantlink.a.controller;
 
-import cn.plantlink.a.AApplication;
 import cn.plantlink.a.service.AService;
 import cn.plantlink.a.service.remote.RemoteMicroservice;
 import org.slf4j.Logger;
@@ -37,7 +36,7 @@ public class AController {
     }
 
     @RequestMapping("/rest")
-    public String rest() throws Exception {
+    public String rest() {
         String bClientRest = remoteMicroservice.bClientRest();
         String cClientRest = remoteMicroservice.cClientRest();
         String format = String.format("[a = %s, b = %s , c = %s", "a-rest]", bClientRest, cClientRest);

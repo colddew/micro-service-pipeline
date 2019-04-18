@@ -1,4 +1,4 @@
-package cn.plantlink.c.config;
+package cn.plantlink.a.config;
 
 import io.jaegertracing.internal.JaegerTracer;
 import io.jaegertracing.internal.reporters.InMemoryReporter;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-public class MicroserviceCConfiguration {
+public class MicroserviceAConfiguration {
 
     @Bean
     public RestTemplate restTemplate() {

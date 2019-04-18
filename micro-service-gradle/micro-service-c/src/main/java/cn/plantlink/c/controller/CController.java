@@ -1,6 +1,6 @@
 package cn.plantlink.c.controller;
 
-import cn.plantlink.c.remote.RemoteMicroservice;
+import cn.plantlink.c.service.remote.RemoteMicroservice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class CController {
     }
 
     @RequestMapping("/rest")
-    public String rest() throws Exception {
+    public String rest() {
         String dClientRest = remoteMicroservice.dClientRest();
         logger.info(dClientRest);
         return String.format("[c = %s, d = %s]", "c-rest", dClientRest);
