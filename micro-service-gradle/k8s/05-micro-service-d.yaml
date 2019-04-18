@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - name: micro-service-d
-          image: cn.plantlink/micro-service-d:1.0.1-SNAPSHOT
+          image: cn.plantlink/micro-service-d:1.0.3-SNAPSHOT
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9999

@@ -26,7 +26,7 @@ spec:
 #    - "<hostname>" # need access by curl
   gateways:
     - micro-service-gateway
-    - mesh
+#    - mesh
   http:
     - match:
         - uri:
