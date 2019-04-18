@@ -145,4 +145,4 @@ build the latest microservice CI/CD architecture with popular technologies
 ![prometheus](https://github.com/colddew/micro-service-lab/blob/master/assets/prometheus.png?raw=true)
 ![jaeger](https://github.com/colddew/micro-service-lab/blob/master/assets/jaeger.png?raw=true)
 ![kiali](https://github.com/colddew/micro-service-lab/blob/master/assets/kiali.png?raw=true)
-![granafa](https://github.com/colddew/micro-service-lab/blob/master/assets/granafa.?raw=true)
+![granafa](https://github.com/colddew/micro-service-lab/blob/master/assets/granafa.png?raw=true)
