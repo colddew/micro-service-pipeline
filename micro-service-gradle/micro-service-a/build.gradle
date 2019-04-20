@@ -1,6 +1,7 @@
 archivesBaseName = "micro-service-a"
 
 dependencies {
+    implementation 'io.opentracing.contrib:opentracing-okhttp3:0.1.0'
 //    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 }
 

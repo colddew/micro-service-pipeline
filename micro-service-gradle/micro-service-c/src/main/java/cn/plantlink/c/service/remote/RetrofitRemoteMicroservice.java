@@ -9,9 +9,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import javax.annotation.PostConstruct;
 
-/**
- * TODO opentracing jaeger sapns issue, just 2 spans
- */
 @Service
 public class RetrofitRemoteMicroservice {
 
