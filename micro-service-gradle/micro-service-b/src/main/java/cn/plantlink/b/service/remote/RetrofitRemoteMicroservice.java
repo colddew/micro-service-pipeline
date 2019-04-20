@@ -1,7 +1,8 @@
 package cn.plantlink.b.service.remote;
 
-import cn.plantlink.b.config.MicroserviceBProperties;
+import cn.plantlink.b.config.RemoteServiceProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -11,17 +12,18 @@ import javax.annotation.PostConstruct;
 /**
  * TODO opentracing jaeger sapns issue, just 2 spans
  */
+@Service
 public class RetrofitRemoteMicroservice {
 
     @Autowired
-    private MicroserviceBProperties bProperties;
+    private RemoteServiceProperties remoteServiceProperties;
 
     private MicroserviceDClientApi dClientApi;
 
     @PostConstruct
     public void init() {
         Retrofit dClientRetrofit = new Retrofit.Builder()
-                .baseUrl(bProperties.getDBaseUrl())
+                .baseUrl(remoteServiceProperties.getD())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

@@ -1,6 +1,6 @@
 package cn.plantlink.a.service;
 
-import cn.plantlink.a.config.MicroserviceAProperties;
+import cn.plantlink.a.config.LocalServiceProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class AService {
 
     @Autowired
-    private MicroserviceAProperties aProperties;
+    private LocalServiceProperties aProperties;
 
     public String getMessage() {
         return aProperties.getMessage();

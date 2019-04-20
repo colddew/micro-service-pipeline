@@ -22,7 +22,7 @@ public class MicroserviceAConfiguration {
 
     @ConditionalOnProperty(value = "opentracing.jaeger.enabled", havingValue = "false", matchIfMissing = false)
     @Bean
-    public Tracer jaegerTracer() {
+    public Tracer noTracer() {
 
         final Reporter reporter = new InMemoryReporter();
         final Sampler sampler = new ConstSampler(false);

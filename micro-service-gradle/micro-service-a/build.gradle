@@ -1,7 +1,7 @@
 archivesBaseName = "micro-service-a"
 
 dependencies {
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+//    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 }
 
-compileJava.dependsOn(processResources)
+//compileJava.dependsOn(processResources)
