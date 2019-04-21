@@ -6,7 +6,7 @@
 
 build the latest microservice CI/CD architecture with popular technologies
 
-# tech stack / issues
+# tech stack
 
 - [x] SpringBoot
 
@@ -18,13 +18,13 @@ build the latest microservice CI/CD architecture with popular technologies
 
 - [x] Jaeger / Zipkin
 
-- [x] Granafa: config metircs name
+- [x] Granafa
 
-- [x] Travis CI / Jenkins: config webhook
+- [x] Travis CI / Jenkins
 
-- [x] Kiali: More than one Gateway for the same host port combination
+- [x] Kiali
 
-- [ ] Gitlab
+- [x] Gitlab
 
 - [ ] Nexus
 
