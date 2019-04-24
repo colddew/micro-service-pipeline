@@ -4,7 +4,7 @@
 
 # brief
 
-build the latest microservice CI/CD architecture with popular technologies
+build the latest microservice CI/CD pipeline architecture with popular technologies
 
 # tech stack
 
@@ -146,9 +146,9 @@ build the latest microservice CI/CD architecture with popular technologies
 
 ## result screenshot
 
-![sonatype-nexus](https://github.com/colddew/micro-service-lab/blob/master/assets/sonatype-nexus.png?raw=true)
-
 ![gitlab](https://github.com/colddew/micro-service-lab/blob/master/assets/gitlab.png?raw=true)
+
+![sonatype-nexus](https://github.com/colddew/micro-service-lab/blob/master/assets/sonatype-nexus.png?raw=true)
 
 ![kubernetes](https://github.com/colddew/micro-service-lab/blob/master/assets/kubernetes.png?raw=true)
 
