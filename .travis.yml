@@ -15,7 +15,7 @@ before_install:
 script:
     - cd micro-service-gradle
     - gradle -Pci clean test
-    - gradle codeCoverageReport
+    - gradle -Pci codeCoverageReport
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)

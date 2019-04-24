@@ -2,11 +2,11 @@
 [![codecov](https://codecov.io/gh/colddew/micro-service-pipeline/branch/master/graph/badge.svg)](https://codecov.io/gh/colddew/micro-service-pipeline)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat)](http://doge.mit-license.org)
 
-# brief
+# Brief
 
 build the latest microservice CI/CD pipeline architecture with popular technologies
 
-# tech stack
+# Tech Stack
 
 - [x] SpringBoot
 
@@ -30,7 +30,7 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Nexus
 
-# tips
+# Tips
 
 ## install macosx docker desktop
 
@@ -110,7 +110,7 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
   
   jaeger - `http://localhost:16686`
   
-## build and deploy microservice
+## Build and Deploy microservice
   
 - build microservice docker images
 
@@ -144,7 +144,7 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
   
   kubectl get pods --selector="app=micro-service" -o=wide
 
-## result screenshot
+## Result Screenshot
 
 ![gitlab](https://github.com/colddew/micro-service-pipeline/blob/master/assets/gitlab.png?raw=true)
 
