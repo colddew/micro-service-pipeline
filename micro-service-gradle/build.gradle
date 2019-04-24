@@ -10,11 +10,15 @@ buildscript {
     }
 
     repositories {
-        maven { url 'http://localhost:8081/repository/maven-public/'}
+        if(project.hasProperty('ci')) {
+            maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+            mavenCentral()
+        } else {
+            maven { url 'http://localhost:8081/repository/maven-public/'}
+        }
         maven { url "https://plugins.gradle.org/m2/" }
-//        mavenLocal()
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        mavenCentral()
+        mavenLocal()
+//
     }
 
     dependencies {
@@ -32,21 +36,28 @@ allprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
     apply plugin: 'jacoco'
+    apply plugin: 'maven'
     apply plugin: 'maven-publish'
-
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
     repositories {
-        maven { url 'http://localhost:8081/repository/maven-public/'}
-//        mavenLocal()
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        mavenCentral()
+        if(project.hasProperty('ci')) {
+            maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+            mavenCentral()
+        } else {
+            maven { url 'http://localhost:8081/repository/maven-public/'}
+        }
+        mavenLocal()
     }
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        from sourceSets.main.allSource
     }
 }
 
@@ -65,6 +76,7 @@ subprojects {
         compile "com.google.code.findbugs:${findbugsVersion}"
         compile "io.opentracing.contrib:opentracing-spring-jaeger-web-starter:${springJaegerVersion}"
         testCompile 'org.springframework.boot:spring-boot-starter-test'
+        compile 'org.testng:testng:6.14.2'
     }
 
     dependencyManagement {
@@ -91,6 +103,9 @@ subprojects {
                 artifactId project.name
                 version project.version
                 from components.java
+//                artifact project.sourcesJar {
+//                    classifier "sources"
+//                }
             }
         }
 

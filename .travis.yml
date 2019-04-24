@@ -14,7 +14,7 @@ before_install:
 
 script:
     - cd micro-service-gradle
-    - gradle clean test
+    - gradle -Pci clean test
     - gradle codeCoverageReport
 
 after_success:
