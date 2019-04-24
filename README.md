@@ -1,5 +1,7 @@
-[![Build Status](https://travis-ci.org/colddew/micro-service-lab.svg?branch=master)](https://travis-ci.org/colddew/micro-service-lab)
-[![codecov](https://codecov.io/gh/colddew/micro-service-lab/branch/master/graph/badge.svg)](https://codecov.io/gh/colddew/micro-service-lab)
+[![Build Status](https://travis-ci.org/colddew/micro-service-pipeline.svg?branch=master)](https://travis-ci.org/colddew/micro-service-pipeline)
+
+[![codecov](https://codecov.io/gh/colddew/micro-service-pipeline/branch/master/graph/badge.svg)](https://codecov.io/gh/colddew/micro-service-pipeline)
+
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat)](http://doge.mit-license.org)
 
 # brief
@@ -146,16 +148,16 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
 
 ## result screenshot
 
-![gitlab](https://github.com/colddew/micro-service-lab/blob/master/assets/gitlab.png?raw=true)
+![gitlab](https://github.com/colddew/micro-service-pipeline/blob/master/assets/gitlab.png?raw=true)
 
-![sonatype-nexus](https://github.com/colddew/micro-service-lab/blob/master/assets/sonatype-nexus.png?raw=true)
+![sonatype-nexus](https://github.com/colddew/micro-service-pipeline/blob/master/assets/sonatype-nexus.png?raw=true)
 
-![kubernetes](https://github.com/colddew/micro-service-lab/blob/master/assets/kubernetes.png?raw=true)
+![kubernetes](https://github.com/colddew/micro-service-pipeline/blob/master/assets/kubernetes.png?raw=true)
 
-![prometheus](https://github.com/colddew/micro-service-lab/blob/master/assets/prometheus.png?raw=true)
+![prometheus](https://github.com/colddew/micro-service-pipeline/blob/master/assets/prometheus.png?raw=true)
 
-![jaeger](https://github.com/colddew/micro-service-lab/blob/master/assets/jaeger.png?raw=true)
+![jaeger](https://github.com/colddew/micro-service-pipeline/blob/master/assets/jaeger.png?raw=true)
 
-![kiali](https://github.com/colddew/micro-service-lab/blob/master/assets/kiali.png?raw=true)
+![kiali](https://github.com/colddew/micro-service-pipeline/blob/master/assets/kiali.png?raw=true)
 
-![granafa](https://github.com/colddew/micro-service-lab/blob/master/assets/granafa.png?raw=true)
+![granafa](https://github.com/colddew/micro-service-pipeline/blob/master/assets/granafa.png?raw=true)
