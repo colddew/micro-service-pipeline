@@ -12,6 +12,8 @@ build the latest microservice CI/CD architecture with popular technologies
 
 - [x] Docker
 
+- [x] Registry / Harbor
+
 - [x] Kubernetes
 
 - [x] Istio
@@ -26,7 +28,7 @@ build the latest microservice CI/CD architecture with popular technologies
 
 - [x] Gitlab
 
-- [ ] Nexus
+- [x] Nexus
 
 # tips
 
@@ -118,6 +120,8 @@ build the latest microservice CI/CD architecture with popular technologies
   
   gradle clean test codeCoverageReport
   
+  gradle publishMavenPublicationToMavenRepository
+  
   gradle build docker
   
   docker login
@@ -141,6 +145,10 @@ build the latest microservice CI/CD architecture with popular technologies
   kubectl get pods --selector="app=micro-service" -o=wide
 
 ## result screenshot
+
+![sonatype-nexus](https://github.com/colddew/micro-service-lab/blob/master/assets/sonatype-nexus.png?raw=true)
+
+![gitlab](https://github.com/colddew/micro-service-lab/blob/master/assets/gitlab.png?raw=true)
 
 ![kubernetes](https://github.com/colddew/micro-service-lab/blob/master/assets/kubernetes.png?raw=true)
 

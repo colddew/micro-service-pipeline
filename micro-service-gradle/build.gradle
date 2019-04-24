@@ -10,12 +10,12 @@ buildscript {
     }
 
     repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        jcenter()
-        mavenCentral()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+        maven { url 'http://localhost:8081/repository/maven-public/'}
+        maven { url "https://plugins.gradle.org/m2/" }
+//        mavenLocal()
+//        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+//        jcenter()
+//        mavenCentral()
     }
 
     dependencies {
@@ -33,14 +33,18 @@ allprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
     apply plugin: 'jacoco'
+    apply plugin: 'maven-publish'
+
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
     repositories {
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        jcenter()
-        mavenCentral()
+        maven { url 'http://localhost:8081/repository/maven-public/'}
+//        mavenLocal()
+//        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+//        jcenter()
+//        mavenCentral()
     }
 
     tasks.withType(JavaCompile) {
@@ -79,6 +83,32 @@ subprojects {
         name "${project.group}/${jar.baseName}:${jar.version}"
         files jar.archivePath
         buildArgs(['JAR_FILE': "${jar.archiveName}"])
+    }
+
+    publishing {
+
+        publications {
+            maven(MavenPublication) {
+                groupId project.group
+                artifactId project.name
+                version project.version
+                from components.java
+            }
+        }
+
+        repositories {
+            maven {
+                if (project.version.endsWith('-SNAPSHOT')) {
+                    url = "http://localhost:8081/repository/maven-snapshots/"
+                } else {
+                    url = "http://localhost:8081/repository/maven-releases/"
+                }
+                credentials {
+                    username 'admin'
+                    password 'admin123'
+                }
+            }
+        }
     }
 }
 
