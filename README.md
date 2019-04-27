@@ -18,7 +18,7 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Istio
 
-- [x] Jaeger / Zipkin
+- [x] Zipkin / Jaeger
 
 - [x] Granafa
 
@@ -28,7 +28,7 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Gitlab
 
-- [x] Nexus
+- [x] Sonatype Nexus
 
 # Tips
 
@@ -122,7 +122,7 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
   
   gradle publishMavenPublicationToMavenRepository
   
-  gradle build docker
+  gradle -x test build docker
   
   docker login
   

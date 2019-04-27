@@ -1,0 +1,53 @@
+pipeline {
+  agent none
+  environment {
+      K8S_CONFIG = credentials('k8s-jenkins ')
+  }
+  stages {
+    stage('gradle build & test') {
+      agent {
+          node {
+              label 'master'
+          }
+      }
+      steps {
+        sh '''
+            cd ${WORKSPACE}/micro-service-gradle
+            ${GRADLE_HOME}/bin/gradle -Pci clean test
+            ${GRADLE_HOME}/bin/gradle -Pci codeCoverageReport
+        '''
+        stash excludes: '**/build/**', includes: '**', name: 'source'
+      }
+    }
+    stage('docker build') {
+      agent {
+          node {
+              label 'master'
+          }
+      }
+      steps {
+        unstash 'source'
+        sh '''
+            cd ${WORKSPACE}/micro-service-gradle
+            ${GRADLE_HOME}/bin/gradle -Pci -x test build docker
+        '''
+      }
+    }
+    stage('k8s deploy') {
+      agent {
+          docker {
+              image 'lwolf/helm-kubectl-docker'
+          }
+      }
+      steps {
+        unstash 'source'
+        sh '''
+            cd ${WORKSPACE}/micro-service-gradle/k8s
+            mkdir -p ~/.kube
+            echo ${K8S_CONFIG} | base64 -d > ~/.kube/config
+            kubectl apply -f .
+        '''
+      }
+    }
+  }
+}

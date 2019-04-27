@@ -1,3 +1,6 @@
+# prepare docker images
+gradle build docker
+
 # create namespace, deployment, service, gateway
 kubectl apply -f .
 
