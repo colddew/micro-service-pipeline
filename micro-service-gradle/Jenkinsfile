@@ -1,57 +1,77 @@
 pipeline {
-  agent none
-  environment {
-      K8S_CONFIG = credentials('k8s-jenkins ')
-  }
-  stages {
-    stage('gradle build & test') {
-      agent {
-          node {
-              label 'master'
-          }
-      }
-      steps {
-        sh '''
-            cd ${WORKSPACE}/micro-service-gradle
-            ${GRADLE_HOME}/bin/gradle -Pci clean test
-            ${GRADLE_HOME}/bin/gradle -Pci codeCoverageReport
-        '''
-        junit '**/build/reports/**/*.xml'
-        jacoco classPattern: '**/build/classes', execPattern: '**/build/jacoco/**.exec'
-        stash excludes: '**/build/**', includes: '**', name: 'source'
-      }
+    agent any
+    environment {
+        K8S_CONFIG = credentials('k8s-jenkins ')
     }
-    stage('docker build') {
-      agent {
-          node {
-              label 'master'
-          }
-      }
-      steps {
-        unstash 'source'
-        sh '''
-            cd ${WORKSPACE}/micro-service-gradle
-            ${GRADLE_HOME}/bin/gradle -Pci -x test build docker
-        '''
-      }
+    stages {
+        stage('gradle build & test') {
+            agent {
+                node {
+                    label 'master'
+                }
+            }
+            steps {
+                dir("${WORKSPACE}/micro-service-gradle"){
+                    sh '${GRADLE_HOME}/bin/gradle -Pci clean test'
+                }
+                junit allowEmptyResults: true, keepLongStdio: true, testResults: '**/build/test-results/test/**/*.xml'
+
+                dir("${WORKSPACE}/micro-service-gradle"){
+                    sh '${GRADLE_HOME}/bin/gradle -Pci codeCoverageReport'
+                }
+                jacoco classPattern: '**/build/classes', execPattern: '**/build/jacoco/**.exec'
+
+                stash excludes: '**/build/**', includes: '**', name: 'source'
+            }
+        }
+        stage('docker build') {
+            agent {
+                node {
+                    label 'master'
+                }
+            }
+            steps {
+                unstash 'source'
+                dir("${WORKSPACE}/micro-service-gradle"){
+                    sh '${GRADLE_HOME}/bin/gradle -Pci -x test build docker'
+                }
+            }
+        }
+        stage('k8s deploy') {
+            agent {
+                docker {
+                    image 'lwolf/helm-kubectl-docker'
+                }
+            }
+            steps {
+                unstash 'source'
+                dir("${WORKSPACE}/micro-service-gradle/k8s"){
+                    sh '''
+                        mkdir -p ~/.kube
+                        echo ${K8S_CONFIG} | base64 -d > ~/.kube/config
+                        kubectl delete -f .
+                        sleep 5s
+                        kubectl apply -f .
+                    '''
+                }
+            }
+        }
     }
-    stage('k8s deploy') {
-      agent {
-          docker {
-              image 'lwolf/helm-kubectl-docker'
-          }
-      }
-      steps {
-        unstash 'source'
-        sh '''
-            cd ${WORKSPACE}/micro-service-gradle/k8s
-            mkdir -p ~/.kube
-            echo ${K8S_CONFIG} | base64 -d > ~/.kube/config
-            kubectl delete -f .
-            sleep 5s
-            kubectl apply -f .
-        '''
-      }
+    post {
+        always {
+            deleteDir()
+        }
+//        success {
+//
+//        }
+//        failure {
+//
+//        }
+//        unstable {
+//
+//        }
+//        changed {
+//
+//        }
     }
-  }
 }
