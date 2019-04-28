@@ -16,6 +16,8 @@ pipeline {
             ${GRADLE_HOME}/bin/gradle -Pci clean test
             ${GRADLE_HOME}/bin/gradle -Pci codeCoverageReport
         '''
+        junit '**/build/reports/**/*.xml'
+        jacoco classPattern: '**/build/classes', execPattern: '**/build/jacoco/**.exec'
         stash excludes: '**/build/**', includes: '**', name: 'source'
       }
     }
