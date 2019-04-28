@@ -45,6 +45,8 @@ pipeline {
             cd ${WORKSPACE}/micro-service-gradle/k8s
             mkdir -p ~/.kube
             echo ${K8S_CONFIG} | base64 -d > ~/.kube/config
+            kubectl delete -f .
+            sleep 5s
             kubectl apply -f .
         '''
       }

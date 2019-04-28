@@ -6,29 +6,31 @@
 
 build the latest microservice CI/CD pipeline architecture with popular technologies
 
-# Tech Stack
+# Tech Stack & legacy Issue
 
 - [x] SpringBoot
 
 - [x] Docker
 
-- [x] Registry / Harbor
+- [x] Registry / Harbor: ingress access
 
-- [x] Kubernetes
+- [x] Kubernetes: clean historical images
 
-- [x] Istio
+- [x] Istio: pv storage
 
 - [x] Zipkin / Jaeger
 
-- [x] Granafa
+- [x] Granafa: metric config
 
-- [x] Travis CI / Jenkins
+- [x] Travis CI / Jenkins: pipeline script template & multiple environment deployment
 
 - [x] Kiali
 
 - [x] Gitlab
 
 - [x] Sonatype Nexus
+
+- [ ] ClusterFS / FastDFS / NFS: external unified storage
 
 # Tips
 
@@ -109,6 +111,12 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
   zipkin - `http://localhost:9411`
   
   jaeger - `http://localhost:16686`
+  
+- config k8s credentials string in `config_base64` file for jenkins, `clusters.cluster.server` should convert to container internal ip
+  
+  cd ~/.kube
+  
+  base64 config > config_base64
   
 ## Build and Deploy microservice
   
