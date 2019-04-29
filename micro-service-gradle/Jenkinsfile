@@ -5,19 +5,15 @@ pipeline {
     }
     stages {
         stage('gradle build & test') {
-            agent {
-                node {
-                    label 'master'
-                }
-            }
+            agent { docker 'gradle:5.3.1-jdk8-alpine' }
             steps {
-                dir("${WORKSPACE}/micro-service-gradle"){
-                    sh '${GRADLE_HOME}/bin/gradle -Pci clean test'
+                dir("${env.WORKSPACE}/micro-service-gradle"){
+                    sh 'gradle -Pci clean test'
                 }
                 junit allowEmptyResults: true, keepLongStdio: true, testResults: '**/build/test-results/test/**/*.xml'
 
-                dir("${WORKSPACE}/micro-service-gradle"){
-                    sh '${GRADLE_HOME}/bin/gradle -Pci codeCoverageReport'
+                dir("${env.WORKSPACE}/micro-service-gradle"){
+                    sh 'gradle -Pci codeCoverageReport'
                 }
                 jacoco classPattern: '**/build/classes', execPattern: '**/build/jacoco/**.exec'
 
@@ -32,7 +28,7 @@ pipeline {
             }
             steps {
                 unstash 'source'
-                dir("${WORKSPACE}/micro-service-gradle"){
+                dir("${env.WORKSPACE}/micro-service-gradle"){
                     sh '${GRADLE_HOME}/bin/gradle -Pci -x test build docker'
                 }
             }
@@ -45,7 +41,7 @@ pipeline {
             }
             steps {
                 unstash 'source'
-                dir("${WORKSPACE}/micro-service-gradle/k8s"){
+                dir("${env.WORKSPACE}/micro-service-gradle/k8s"){
                     sh '''
                         mkdir -p ~/.kube
                         echo ${K8S_CONFIG} | base64 -d > ~/.kube/config
