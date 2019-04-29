@@ -3,9 +3,14 @@ pipeline {
     environment {
         K8S_CONFIG = credentials('k8s-jenkins ')
     }
+    tools {
+        git 'Default'
+        gradle 'gradle-5.3.1'
+        maven 'maven-3.6.1'
+    }
     stages {
         stage('gradle build & test') {
-            agent { docker 'gradle:5.3.1-jdk8-alpine' }
+            agent any
             steps {
                 dir("${env.WORKSPACE}/micro-service-gradle"){
                     sh 'gradle -Pci clean test'
@@ -29,7 +34,7 @@ pipeline {
             steps {
                 unstash 'source'
                 dir("${env.WORKSPACE}/micro-service-gradle"){
-                    sh '${GRADLE_HOME}/bin/gradle -Pci -x test build docker'
+                    sh 'gradle -Pci -x test build docker'
                 }
             }
         }
@@ -41,14 +46,18 @@ pipeline {
             }
             steps {
                 unstash 'source'
+                sh 'mkdir -p ~/.kube'
+                sh "echo ${K8S_CONFIG} | base64 -d > ~/.kube/config"
                 dir("${env.WORKSPACE}/micro-service-gradle/k8s"){
-                    sh '''
-                        mkdir -p ~/.kube
-                        echo ${K8S_CONFIG} | base64 -d > ~/.kube/config
-                        kubectl delete -f .
-                        sleep 5s
-                        kubectl apply -f .
-                    '''
+                    script {
+                        try {
+                            sh 'kubectl delete -f .'
+                        } catch(Exception e) {
+                            println e
+                        }
+                    }
+                    sh 'sleep 5s'
+                    sh 'kubectl apply -f .'
                 }
             }
         }
@@ -57,17 +66,5 @@ pipeline {
         always {
             deleteDir()
         }
-//        success {
-//
-//        }
-//        failure {
-//
-//        }
-//        unstable {
-//
-//        }
-//        changed {
-//
-//        }
     }
 }

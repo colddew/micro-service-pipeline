@@ -6,7 +6,7 @@
 
 build the latest microservice CI/CD pipeline architecture with popular technologies
 
-# Tech Stack & legacy Issue
+# Tech Stack & Legacy Issue
 
 - [x] SpringBoot
 
