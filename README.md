@@ -62,9 +62,7 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
 
   kubectl proxy
   
-  TOKEN=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
-  
-  kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+  kubectl config set-credentials docker-for-desktop --token=$(kubectl -n kube-system describe secret default| awk '$1=="token:"{print $2}')
   
   visit http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/, click `shift + command + .`, select config file and login
 
