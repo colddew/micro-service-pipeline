@@ -30,7 +30,7 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Sonatype Nexus
 
-- [ ] ClusterFS / FastDFS / NFS: external unified storage
+- [ ] ClusterFS / FastDFS / Ceph / NFS: external unified storage
 
 # Tips
 
@@ -86,7 +86,7 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
   
 - collect metrics and logs
 
-  istioctl create -f telemetry.yaml
+  istioctl create -f istio-telemetry.yaml
   
   kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=prometheus -o jsonpath='{.items[0].metadata.name}') 9090:9090 &
   
@@ -114,7 +114,7 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
   
   cd ~/.kube
   
-  base64 config > config_base64
+  base64 config_k8s > config_k8s_base64
   
 ## Build and Deploy microservice
   
