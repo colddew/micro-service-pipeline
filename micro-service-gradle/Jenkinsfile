@@ -1,7 +1,11 @@
 pipeline {
     agent any
     environment {
+        HARBOR_CREDS = credentials('harbor-creds')
         K8S_CONFIG = credentials('k8s-jenkins ')
+    }
+    parameters {
+        string(name: 'HARBOR_HOST', defaultValue: 'harbor.local', description: 'harbor registry')
     }
     tools {
         git 'Default'
