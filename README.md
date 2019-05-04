@@ -12,7 +12,7 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Docker
 
-- [x] Registry / Harbor: ingress access
+- [x] Registry / Harbor
 
 - [x] Kubernetes: clean historical images
 

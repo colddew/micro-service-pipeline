@@ -3,9 +3,7 @@ pipeline {
     environment {
         HARBOR_CREDS = credentials('harbor-creds')
         K8S_CONFIG = credentials('k8s-jenkins ')
-    }
-    parameters {
-        string(name: 'HARBOR_HOST', defaultValue: 'harbor.local', description: 'harbor registry')
+        HARBOR_HOST = 'harbor.local'
     }
     tools {
         git 'Default'
@@ -16,12 +14,12 @@ pipeline {
         stage('gradle test') {
             agent any
             steps {
-                dir("${env.WORKSPACE}/micro-service-gradle"){
+                dir("${WORKSPACE}/micro-service-gradle"){
                     sh 'gradle -Pci clean test'
                 }
                 junit allowEmptyResults: true, keepLongStdio: true, testResults: '**/build/test-results/test/**/*.xml'
 
-                dir("${env.WORKSPACE}/micro-service-gradle"){
+                dir("${WORKSPACE}/micro-service-gradle"){
                     sh 'gradle -Pci codeCoverageReport'
                 }
                 jacoco classPattern: '**/build/classes', execPattern: '**/build/jacoco/**.exec'
@@ -37,10 +35,10 @@ pipeline {
             }
             steps {
                 unstash 'source'
-                dir("${env.WORKSPACE}/micro-service-gradle"){
+                dir("${WORKSPACE}/micro-service-gradle"){
 //                    sh 'gradle -Pci -x test build docker'
                     sh 'gradle -Pci -x test build dockerTag'
-                    sh "docker login -u ${HARBOR_CREDS_USR} -p ${HARBOR_CREDS_PSW} ${params.HARBOR_HOST}"
+                    sh "docker login -u ${HARBOR_CREDS_USR} -p ${HARBOR_CREDS_PSW} ${HARBOR_HOST}"
                     sh 'gradle -Pci -x test dockerPushHarbor'
                     sh 'gradle -Pci -x test removeLocalTagDockerImage removeLocalDockerImage'
                 }
@@ -56,7 +54,7 @@ pipeline {
                 unstash 'source'
                 sh 'mkdir -p ~/.kube'
                 sh "echo ${K8S_CONFIG} | base64 -d > ~/.kube/config"
-                dir("${env.WORKSPACE}/micro-service-gradle/k8s"){
+                dir("${WORKSPACE}/micro-service-gradle/k8s"){
                     script {
                         try {
                             sh 'kubectl delete -f .'
