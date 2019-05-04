@@ -156,6 +156,8 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
 
 ![sonatype-nexus](https://github.com/colddew/micro-service-pipeline/blob/master/assets/sonatype-nexus.png?raw=true)
 
+![harbor](https://github.com/colddew/micro-service-pipeline/blob/master/assets/harbor.png?raw=true)
+
 ![jenkins](https://github.com/colddew/micro-service-pipeline/blob/master/assets/jenkins.png?raw=true)
 
 ![kubernetes](https://github.com/colddew/micro-service-pipeline/blob/master/assets/kubernetes.png?raw=true)
