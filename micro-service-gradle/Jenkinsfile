@@ -13,7 +13,7 @@ pipeline {
         maven 'maven-3.6.1'
     }
     stages {
-        stage('gradle build & test') {
+        stage('gradle test') {
             agent any
             steps {
                 dir("${env.WORKSPACE}/micro-service-gradle"){
@@ -38,7 +38,11 @@ pipeline {
             steps {
                 unstash 'source'
                 dir("${env.WORKSPACE}/micro-service-gradle"){
-                    sh 'gradle -Pci -x test build docker'
+//                    sh 'gradle -Pci -x test build docker'
+                    sh 'gradle -Pci -x test build dockerTag'
+                    sh "docker login -u ${HARBOR_CREDS_USR} -p ${HARBOR_CREDS_PSW} ${params.HARBOR_HOST}"
+                    sh 'gradle -Pci -x test dockerPushHarbor'
+                    sh 'gradle -Pci -x test removeLocalTagDockerImage removeLocalDockerImage'
                 }
             }
         }
