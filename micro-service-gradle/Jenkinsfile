@@ -29,6 +29,7 @@ pipeline {
         stage('docker build') {
             agent {
                 docker {
+//                    image 'colddew/docker-in-docker-gradle:5.3.1'
                     image 'harbor.local/cn.plantlink/docker-in-docker-gradle:5.3.1'
                 }
             }
