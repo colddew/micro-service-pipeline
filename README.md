@@ -14,7 +14,7 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Registry / Harbor
 
-- [x] Kubernetes: clean historical images
+- [x] Kubernetes
 
 - [x] Istio: pv storage
 
@@ -22,7 +22,7 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Granafa: metric config
 
-- [x] Travis CI / Jenkins: pipeline script template & multiple environment deployment & ldap and security matrix
+- [x] Travis CI / Jenkins: pipeline script template & ldap and security matrix
 
 - [x] Kiali
 
