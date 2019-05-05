@@ -14,9 +14,9 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Registry / Harbor
 
-- [x] Kubernetes
+- [x] Kubernetes: cephfs, glusterfs, nfs, etc. external storage
 
-- [x] Istio: pv storage
+- [x] Istio
 
 - [x] Zipkin / Jaeger
 
@@ -29,8 +29,6 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
 - [x] Gitlab
 
 - [x] Sonatype Nexus
-
-- [ ] ClusterFS / FastDFS / Ceph / NFS: external unified storage
 
 # Tips
 
