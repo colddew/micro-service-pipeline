@@ -116,6 +116,14 @@ build the latest microservice CI/CD pipeline architecture with popular technolog
   
   base64 config_k8s > config_k8s_base64
   
+## Make Customized Docker Image [refer to `conf/dind-gradle-Dockerfile`]
+
+  docker build -t cn.plantlink/docker-in-docker-gradle:5.3.1 .
+  
+  docker tag cn.plantlink/docker-in-docker-gradle:5.3.1 harbor.local/cn.plantlink/docker-in-docker-gradle:5.3.1
+  
+  docker push harbor.local/cn.plantlink/docker-in-docker-gradle:5.3.1
+  
 ## Build and Deploy microservice
   
 - build microservice docker images

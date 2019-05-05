@@ -5,14 +5,13 @@ pipeline {
         K8S_CONFIG = credentials('k8s-jenkins ')
         HARBOR_HOST = 'harbor.local'
     }
-    tools {
-        git 'Default'
-        gradle 'gradle-5.3.1'
-        maven 'maven-3.6.1'
-    }
     stages {
         stage('gradle test') {
-            agent any
+            agent {
+                docker {
+                    image 'gradle:5.3.1-jdk8-alpine'
+                }
+            }
             steps {
                 dir("${WORKSPACE}/micro-service-gradle"){
                     sh 'gradle -Pci clean test'
@@ -29,8 +28,8 @@ pipeline {
         }
         stage('docker build') {
             agent {
-                node {
-                    label 'master'
+                docker {
+                    image 'harbor.local/cn.plantlink/docker-in-docker-gradle:5.3.1'
                 }
             }
             steps {

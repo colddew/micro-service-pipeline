@@ -1,0 +1,64 @@
+FROM docker:dind
+
+MAINTAINER "Colddew <88028842@qq.com>"
+
+# Default to UTF-8 file.encoding
+ENV LANG C.UTF-8
+
+# add a simple script that can auto-detect the appropriate JAVA_HOME value
+# based on whether the JDK or only the JRE is installed
+RUN { \
+		echo '#!/bin/sh'; \
+		echo 'set -e'; \
+		echo; \
+		echo 'dirname "$(dirname "$(readlink -f "$(which javac || which java)")")"'; \
+	} > /usr/local/bin/docker-java-home \
+	&& chmod +x /usr/local/bin/docker-java-home
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
+ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
+
+ENV JAVA_VERSION 8u212
+ENV JAVA_ALPINE_VERSION 8.212.04-r0
+
+RUN set -x \
+	&& apk add --no-cache \
+		openjdk8="$JAVA_ALPINE_VERSION" \
+	&& [ "$JAVA_HOME" = "$(docker-java-home)" ]
+
+CMD ["gradle"]
+
+ENV GRADLE_HOME /opt/gradle
+ENV GRADLE_VERSION 5.3.1
+
+ARG GRADLE_DOWNLOAD_SHA256=1c59a17a054e9c82f0dd881871c9646e943ec4c71dd52ebc6137d17f82337436
+RUN set -o errexit -o nounset \
+    && echo "Downloading Gradle" \
+    && wget -qO gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+    \
+    && echo "Checking download hash" \
+    && echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum -c - \
+    \
+    && echo "Installing Gradle" \
+    && unzip gradle.zip \
+    && rm gradle.zip \
+    && mkdir -p /opt \
+    && mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
+    && ln -s "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle \
+    \
+    && echo "Adding gradle user and group" \
+    && addgroup -S -g 1000 gradle \
+    && adduser -D -S -G gradle -u 1000 -s /bin/ash gradle \
+    && mkdir /home/gradle/.gradle \
+    && chown -R gradle:gradle /home/gradle \
+    \
+    && echo "Symlinking root Gradle cache to gradle Gradle cache" \
+    && ln -s /home/gradle/.gradle /root/.gradle
+
+# Create Gradle volume
+USER gradle
+VOLUME "/home/gradle/.gradle"
+WORKDIR /home/gradle
+
+RUN set -o errexit -o nounset \
+    && echo "Testing Gradle installation" \
+    && gradle --version
