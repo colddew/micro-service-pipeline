@@ -20,7 +20,7 @@ Build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Zipkin / Jaeger
 
-- [x] Granafa: metric config
+- [x] Granafa: metrics config
 
 - [x] Travis CI / Jenkins: pipeline script template & ldap and security matrix
 
