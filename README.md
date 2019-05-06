@@ -4,7 +4,7 @@
 
 # Brief
 
-build the latest microservice CI/CD pipeline architecture with popular technologies
+Build the latest microservice CI/CD pipeline architecture with popular technologies
 
 # Tech Stack & Legacy Issue
 
