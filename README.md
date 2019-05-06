@@ -14,7 +14,7 @@ Build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Registry / Harbor
 
-- [x] Kubernetes: cephfs, glusterfs, nfs, etc. external storage
+- [x] Kubernetes: external storage of cephfs, glusterfs, nfs, etc.
 
 - [x] Istio
 
