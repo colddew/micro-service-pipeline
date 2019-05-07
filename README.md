@@ -10,9 +10,15 @@ Build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] SpringBoot
 
-- [x] Docker
+- [x] Sonatype Nexus
 
 - [x] Registry / Harbor
+
+- [x] Gitlab
+
+- [x] Travis CI / Jenkins: pipeline script template & ldap and security matrix
+
+- [x] Docker
 
 - [x] Kubernetes: external storage of cephfs, glusterfs, nfs, etc.
 
@@ -20,15 +26,9 @@ Build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Zipkin / Jaeger
 
-- [x] Granafa: metrics config
-
-- [x] Travis CI / Jenkins: pipeline script template & ldap and security matrix
-
 - [x] Kiali
 
-- [x] Gitlab
-
-- [x] Sonatype Nexus
+- [x] Granafa: metrics config
 
 # Tips
 
