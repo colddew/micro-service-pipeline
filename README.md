@@ -30,6 +30,12 @@ Build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Granafa: metrics config, qps, response time, delay time
 
+- [ ] ELK
+
+- [ ] Hystrix / Turbine
+
+- [ ] etcd: config center ?!
+
 # Tips
 
 ## install macosx docker desktop
