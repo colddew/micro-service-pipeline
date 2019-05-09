@@ -28,7 +28,7 @@ Build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Kiali
 
-- [x] Granafa: metrics config
+- [x] Granafa: metrics config, qps, response time, delay time
 
 # Tips
 
