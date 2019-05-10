@@ -28,13 +28,15 @@ Build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Kiali
 
-- [x] Granafa: metrics config, qps, response time, delay time
+- [ ] Granafa / InfluxDB: metrics config, qps, response time, delay time
 
 - [ ] ELK
 
 - [ ] Hystrix / Turbine
 
-- [ ] etcd: config center ?!
+- [ ] Etcd: config center or other ?!
+
+- [ ] Nagios / Zabbix
 
 # Tips
 
