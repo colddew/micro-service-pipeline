@@ -34,7 +34,7 @@ Build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [ ] Hystrix / Turbine
 
-- [ ] Etcd: config center or other ?!
+- [ ] Etcd / Consul: config center or other ?!
 
 - [ ] Nagios / Zabbix
 
