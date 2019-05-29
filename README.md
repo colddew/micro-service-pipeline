@@ -28,7 +28,7 @@ Build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Kiali
 
-- [ ] Granafa / InfluxDB: metrics config, qps, response time, delay time
+- [x] Granafa / Prometheus / InfluxDB: metrics config, qps, response time, delay time
 
 - [ ] ELK
 
@@ -37,6 +37,10 @@ Build the latest microservice CI/CD pipeline architecture with popular technolog
 - [ ] Etcd / Consul: config center or other ?!
 
 - [ ] Nagios / Zabbix
+
+- [ ] Metrics: graphite, whisper、carbon、graphite-web; kairosdb; statsd; codahale; metrics, gauge、counter、meter、time、histogram
+
+- [ ] Sonar: Checkstyle、FindBugs、Jtes、JUnit、TestNG、Jacoco
 
 # Tips
 
