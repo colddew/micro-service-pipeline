@@ -28,7 +28,7 @@ Build the latest microservice CI/CD pipeline architecture with popular technolog
 
 - [x] Kiali
 
-- [x] Granafa / Prometheus / InfluxDB: metrics config, qps, response time, delay time
+- [x] Grafana / Prometheus / InfluxDB: metrics config, qps, response time, delay time
 
 - [ ] ELK
 
@@ -100,7 +100,7 @@ Build the latest microservice CI/CD pipeline architecture with popular technolog
   
   kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=prometheus -o jsonpath='{.items[0].metadata.name}') 9090:9090 &
   
-- add granafa and zipkin support, if you want to use jaeger and you need to delete `--set tracing.provider=zipkin` setting
+- add grafana and zipkin support, if you want to use jaeger and you need to delete `--set tracing.provider=zipkin` setting
 
   helm template install/kubernetes/helm/istio --name istio --namespace istio-system --set tracing.enabled=true --set tracing.ingress.enabled=true --set grafana.enabled=true --set tracing.provider=zipkin | kubectl apply -f -
   
@@ -186,4 +186,4 @@ Build the latest microservice CI/CD pipeline architecture with popular technolog
 
 ![kiali](https://github.com/colddew/micro-service-pipeline/blob/master/assets/kiali.png?raw=true)
 
-![granafa](https://github.com/colddew/micro-service-pipeline/blob/master/assets/granafa.png?raw=true)
+![grafana](https://github.com/colddew/micro-service-pipeline/blob/master/assets/grafana.png?raw=true)
