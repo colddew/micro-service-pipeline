@@ -6,6 +6,10 @@
 
 Build the latest microservice CI/CD pipeline architecture with popular technologies
 
+# Architecture
+
+![microservice-pipeline-architecture](https://github.com/colddew/micro-service-pipeline/blob/master/assets/microservice-pipeline-architecture.jpg?raw=true)
+
 # Tech Stack & Legacy Issue
 
 - [x] SpringBoot
